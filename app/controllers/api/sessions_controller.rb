@@ -1,4 +1,6 @@
 class Api::SessionsController < ApplicationController
+  before_action :authenticate_request!
+
   def create
     output = AuthenticateUser.call(email: params[:email], password: params[:password])
     if output.success?
